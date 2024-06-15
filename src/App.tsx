@@ -1,4 +1,4 @@
-import Button from "./components/Button";
+// import Button from "./components/Button";
 import CardColors from "./components/CardColors";
 import Title from "./components/Title";
 
@@ -7,7 +7,7 @@ function App() {
     <main className="text-center">
       <Title />
       <CardColors />
-      <Button />
+      {/* <Button /> */}
     </main>
   );
 }
