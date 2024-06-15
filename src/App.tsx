@@ -1,6 +1,11 @@
+import Title from "./components/Title";
+
 function App() {
-  return <main></main>;
+  return (
+    <main className="text-center">
+      <Title />
+    </main>
+  );
 }
-g;
 
 export default App;
