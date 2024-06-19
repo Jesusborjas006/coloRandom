@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { generateHexCode } from "../utils";
+import lockIcon from "../assets/locked.png";
 
 export const CardColors = () => {
   const [hexCodes, setHexCodes] = useState({
@@ -23,9 +24,17 @@ export const CardColors = () => {
   const cardElements = Object.entries(hexCodes).map(([key, value]) => (
     <div key={key}>
       <div
-        className="h-[150px] w-[150px] border-4 border-black"
+        className="h-[150px] w-[150px] border-4 border-black relative"
         style={{ backgroundColor: `#${value}` }}
-      ></div>
+      >
+        <img
+          className=" absolute bottom-2 right-2"
+          src={lockIcon}
+          alt="lock icon"
+          width={30}
+        />
+      </div>
+
       <h3 className="mt-2 font-semibold text-lg">{"#" + value}</h3>
     </div>
   ));
