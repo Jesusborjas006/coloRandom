@@ -15,7 +15,10 @@ export const CardColors = () => {
           <h3 className="mt-2 font-semibold text-lg">{"#" + hexCode}</h3>
         </div>
       </section>
-      <button className="bg-black text-white px-6 py-2 rounded-md text-xl mt-10">
+      <button
+        className="bg-black text-white px-6 py-2 rounded-md text-xl mt-10"
+        onClick={() => setHexCode(generateHexCode())}
+      >
         New Palette
       </button>
     </>
