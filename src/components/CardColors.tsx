@@ -1,34 +1,34 @@
 import { useState } from "react";
 import { generateHexCode } from "../utils";
 import lockIcon from "../assets/locked.png";
-import unlockIcon from "../assets/unlocked.png";
+import unlockedIcon from "../assets/unlocked.png";
 
 export const CardColors = () => {
   const [hexCodes, setHexCodes] = useState([
     {
       id: 1,
       color: generateHexCode(),
-      locked: false,
+      isLocked: false,
     },
     {
       id: 2,
       color: generateHexCode(),
-      locked: false,
+      isLocked: false,
     },
     {
       id: 3,
       color: generateHexCode(),
-      locked: false,
+      isLocked: false,
     },
     {
       id: 4,
       color: generateHexCode(),
-      locked: false,
+      isLocked: false,
     },
     {
       id: 5,
       color: generateHexCode(),
-      locked: false,
+      isLocked: false,
     },
   ]);
 
@@ -40,6 +40,16 @@ export const CardColors = () => {
     setHexCodes(newHexCode);
   };
 
+  const handleToggle = (id: number) => {
+    const updatedCards = hexCodes.map((card) => {
+      return card.id === id ? { ...card, isLocked: !card.isLocked } : card;
+    });
+
+    setHexCodes(updatedCards);
+  };
+
+  console.log("HexCodes State Rendered: ", hexCodes);
+
   const cardElements = hexCodes.map((card) => (
     <div key={card.id}>
       <div
@@ -47,10 +57,11 @@ export const CardColors = () => {
         style={{ backgroundColor: `#${card.color}` }}
       >
         <img
-          className=" absolute bottom-2 right-2"
-          src={unlockIcon}
+          className=" absolute bottom-2 right-2 cursor-pointer"
+          src={card.isLocked ? lockIcon : unlockedIcon}
           alt="lock icon"
           width={30}
+          onClick={() => handleToggle(card.id)}
         />
       </div>
 
