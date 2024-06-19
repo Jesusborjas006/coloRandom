@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { generateHexCode } from "../utils";
-import CardColor from "./CardColor";
 
 export const CardColors = () => {
   const [hexCodes, setHexCodes] = useState({
@@ -11,6 +10,16 @@ export const CardColors = () => {
     card5: generateHexCode(),
   });
 
+  const handleOnClick = () => {
+    setHexCodes({
+      card1: generateHexCode(),
+      card2: generateHexCode(),
+      card3: generateHexCode(),
+      card4: generateHexCode(),
+      card5: generateHexCode(),
+    });
+  };
+
   const cardElements = Object.entries(hexCodes).map(([key, value]) => (
     <div key={key}>
       <div
@@ -20,7 +29,6 @@ export const CardColors = () => {
       <h3 className="mt-2 font-semibold text-lg">{"#" + value}</h3>
     </div>
   ));
-  console.log("Card Elements: ", cardElements);
 
   return (
     <>
@@ -29,7 +37,7 @@ export const CardColors = () => {
       </section>
       <button
         className="bg-black text-white px-6 py-2 rounded-md text-xl mt-10"
-        // onClick={() => setHexCode(generateHexCode())}
+        onClick={handleOnClick}
       >
         New Palette
       </button>
