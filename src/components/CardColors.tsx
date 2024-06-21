@@ -1,57 +1,18 @@
-import { useState } from "react";
-import { generateHexCode } from "../utils";
 import lockIcon from "../assets/locked.png";
 import unlockedIcon from "../assets/unlocked.png";
+import { HexCodesType } from "../utils/types";
 
-export const CardColors = () => {
-  const [hexCodes, setHexCodes] = useState([
-    {
-      id: 1,
-      color: generateHexCode(),
-      isLocked: false,
-    },
-    {
-      id: 2,
-      color: generateHexCode(),
-      isLocked: false,
-    },
-    {
-      id: 3,
-      color: generateHexCode(),
-      isLocked: false,
-    },
-    {
-      id: 4,
-      color: generateHexCode(),
-      isLocked: false,
-    },
-    {
-      id: 5,
-      color: generateHexCode(),
-      isLocked: false,
-    },
-  ]);
+interface CardColorsProps {
+  hexCodes: HexCodesType[];
+  handleOnClick: () => void;
+  handleToggle: (cardId: number) => void;
+}
 
-  const handleOnClick = () => {
-    const newHexCode = hexCodes.map((card) => {
-      if (card.isLocked) {
-        return card;
-      } else {
-        return { ...card, color: generateHexCode() };
-      }
-    });
-
-    setHexCodes(newHexCode);
-  };
-
-  const handleToggle = (cardId: number) => {
-    const updatedCards = hexCodes.map((card) => {
-      return card.id === cardId ? { ...card, isLocked: !card.isLocked } : card;
-    });
-
-    setHexCodes(updatedCards);
-  };
-
+export const CardColors = ({
+  hexCodes,
+  handleOnClick,
+  handleToggle,
+}: CardColorsProps) => {
   const cardElements = hexCodes.map((card) => (
     <div key={card.id}>
       <div
