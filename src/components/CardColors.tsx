@@ -52,8 +52,6 @@ export const CardColors = () => {
     setHexCodes(updatedCards);
   };
 
-  console.log("HexCodes State Rendered: ", hexCodes);
-
   const cardElements = hexCodes.map((card) => (
     <div key={card.id}>
       <div
@@ -78,12 +76,17 @@ export const CardColors = () => {
       <section className="flex justify-center gap-x-4 mt-16">
         {cardElements}
       </section>
-      <button
-        className="bg-black text-white px-6 py-2 rounded-md text-xl mt-10"
-        onClick={handleOnClick}
-      >
-        New Palette
-      </button>
+      <div className="flex justify-center gap-x-6">
+        <button
+          className="bg-black text-white px-6 py-2 rounded-md text-xl mt-10"
+          onClick={handleOnClick}
+        >
+          New Palette
+        </button>
+        <button className="bg-black text-white px-6 py-2 rounded-md text-xl mt-10">
+          Save Palette
+        </button>
+      </div>
     </>
   );
 };
