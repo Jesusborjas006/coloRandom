@@ -1,32 +1,75 @@
 import { useState } from "react";
 import { generateHexCode } from "../utils";
+import lockIcon from "../assets/locked.png";
+import unlockedIcon from "../assets/unlocked.png";
 
 export const CardColors = () => {
-  const [hexCodes, setHexCodes] = useState({
-    card1: generateHexCode(),
-    card2: generateHexCode(),
-    card3: generateHexCode(),
-    card4: generateHexCode(),
-    card5: generateHexCode(),
-  });
+  const [hexCodes, setHexCodes] = useState([
+    {
+      id: 1,
+      color: generateHexCode(),
+      isLocked: false,
+    },
+    {
+      id: 2,
+      color: generateHexCode(),
+      isLocked: false,
+    },
+    {
+      id: 3,
+      color: generateHexCode(),
+      isLocked: false,
+    },
+    {
+      id: 4,
+      color: generateHexCode(),
+      isLocked: false,
+    },
+    {
+      id: 5,
+      color: generateHexCode(),
+      isLocked: false,
+    },
+  ]);
 
   const handleOnClick = () => {
-    setHexCodes({
-      card1: generateHexCode(),
-      card2: generateHexCode(),
-      card3: generateHexCode(),
-      card4: generateHexCode(),
-      card5: generateHexCode(),
+    const newHexCode = hexCodes.map((card) => {
+      if (card.isLocked) {
+        return card;
+      } else {
+        return { ...card, color: generateHexCode() };
+      }
     });
+
+    setHexCodes(newHexCode);
   };
 
-  const cardElements = Object.entries(hexCodes).map(([key, value]) => (
-    <div key={key}>
+  const handleToggle = (cardId: number) => {
+    const updatedCards = hexCodes.map((card) => {
+      return card.id === cardId ? { ...card, isLocked: !card.isLocked } : card;
+    });
+
+    setHexCodes(updatedCards);
+  };
+
+  console.log("HexCodes State Rendered: ", hexCodes);
+
+  const cardElements = hexCodes.map((card) => (
+    <div key={card.id}>
       <div
-        className="h-[150px] w-[150px] border-4 border-black"
-        style={{ backgroundColor: `#${value}` }}
-      ></div>
-      <h3 className="mt-2 font-semibold text-lg">{"#" + value}</h3>
+        className="h-[150px] w-[150px] border-4 border-black relative"
+        style={{ backgroundColor: `#${card.color}` }}
+      >
+        <img
+          className=" absolute bottom-2 right-2 cursor-pointer"
+          src={card.isLocked ? lockIcon : unlockedIcon}
+          alt="lock icon"
+          width={30}
+          onClick={() => handleToggle(card.id)}
+        />
+      </div>
+
+      <h3 className="mt-2 font-semibold text-lg">{"#" + card.color}</h3>
     </div>
   ));
 
