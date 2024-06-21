@@ -34,15 +34,19 @@ export const CardColors = () => {
 
   const handleOnClick = () => {
     const newHexCode = hexCodes.map((card) => {
-      return { ...card, color: generateHexCode() };
+      if (card.isLocked) {
+        return card;
+      } else {
+        return { ...card, color: generateHexCode() };
+      }
     });
 
     setHexCodes(newHexCode);
   };
 
-  const handleToggle = (id: number) => {
+  const handleToggle = (cardId: number) => {
     const updatedCards = hexCodes.map((card) => {
-      return card.id === id ? { ...card, isLocked: !card.isLocked } : card;
+      return card.id === cardId ? { ...card, isLocked: !card.isLocked } : card;
     });
 
     setHexCodes(updatedCards);
