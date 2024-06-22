@@ -6,26 +6,33 @@ interface SavedPalettesProps {
     palette: HexCodesType[];
   }[];
   removePallete: (id: number) => void;
+  onClickPalette: (id: number) => void;
 }
 
 const SavedPalettes = ({
   savedColorPalettes,
   removePallete,
+  onClickPalette,
 }: SavedPalettesProps) => {
   const savedPaletteElements = savedColorPalettes.map((palette) => (
-    <div
-      key={palette.paletteId}
-      className="flex gap-x-2 justify-center items-center my-6"
-    >
-      {palette.palette.map((color) => (
-        <div
-          key={color.id}
-          className="h-[40px] w-[40px] border-2 border-black"
-          style={{ backgroundColor: `#${color.color}` }}
-        ></div>
-      ))}
+    <div key={palette.paletteId} className="flex justify-center">
+      <div
+        className="flex gap-x-2 justify-center items-center my-4 cursor-pointer "
+        onClick={(e) => {
+          e.stopPropagation();
+          onClickPalette(palette.paletteId);
+        }}
+      >
+        {palette.palette.map((color) => (
+          <div
+            key={color.id}
+            className="h-[40px] w-[40px] border-2 border-black"
+            style={{ backgroundColor: `#${color.color}` }}
+          ></div>
+        ))}
+      </div>
       <button
-        className="text-4xl font-bold ml-2 hover:text-red-600"
+        className="text-4xl font-bold ml-6 hover:text-red-600"
         onClick={() => removePallete(palette.paletteId)}
       >
         X

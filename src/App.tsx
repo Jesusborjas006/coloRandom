@@ -60,6 +60,16 @@ function App() {
     setHexCodes(updatedCards);
   };
 
+  const onClickPalette = (id: number) => {
+    const clickedPalette = savedColorPalettes.find((palette) => {
+      return palette.paletteId === id;
+    });
+
+    if (clickedPalette) {
+      setHexCodes(clickedPalette.palette);
+    }
+  };
+
   const addToSavedPalettes = (currentDisplayed: HexCodesType[]) => {
     setSavedColorPalettes([
       ...savedColorPalettes,
@@ -88,6 +98,7 @@ function App() {
       <SavedPalettes
         savedColorPalettes={savedColorPalettes}
         removePallete={removePallete}
+        onClickPalette={onClickPalette}
       />
     </main>
   );
