@@ -1,59 +1,20 @@
-import { useState } from "react";
-import { generateHexCode } from "../utils";
 import lockIcon from "../assets/locked.png";
 import unlockedIcon from "../assets/unlocked.png";
+import { HexCodesType } from "../utils/types";
 
-export const CardColors = () => {
-  const [hexCodes, setHexCodes] = useState([
-    {
-      id: 1,
-      color: generateHexCode(),
-      isLocked: false,
-    },
-    {
-      id: 2,
-      color: generateHexCode(),
-      isLocked: false,
-    },
-    {
-      id: 3,
-      color: generateHexCode(),
-      isLocked: false,
-    },
-    {
-      id: 4,
-      color: generateHexCode(),
-      isLocked: false,
-    },
-    {
-      id: 5,
-      color: generateHexCode(),
-      isLocked: false,
-    },
-  ]);
+interface CardColorsProps {
+  hexCodes: HexCodesType[];
+  handleOnClick: () => void;
+  handleToggle: (cardId: number) => void;
+  addToSavedPalettes: (currentDisplayed: HexCodesType[]) => void;
+}
 
-  const handleOnClick = () => {
-    const newHexCode = hexCodes.map((card) => {
-      if (card.isLocked) {
-        return card;
-      } else {
-        return { ...card, color: generateHexCode() };
-      }
-    });
-
-    setHexCodes(newHexCode);
-  };
-
-  const handleToggle = (cardId: number) => {
-    const updatedCards = hexCodes.map((card) => {
-      return card.id === cardId ? { ...card, isLocked: !card.isLocked } : card;
-    });
-
-    setHexCodes(updatedCards);
-  };
-
-  console.log("HexCodes State Rendered: ", hexCodes);
-
+export const CardColors = ({
+  hexCodes,
+  handleOnClick,
+  handleToggle,
+  addToSavedPalettes,
+}: CardColorsProps) => {
   const cardElements = hexCodes.map((card) => (
     <div key={card.id}>
       <div
@@ -78,12 +39,20 @@ export const CardColors = () => {
       <section className="flex justify-center gap-x-4 mt-16">
         {cardElements}
       </section>
-      <button
-        className="bg-black text-white px-6 py-2 rounded-md text-xl mt-10"
-        onClick={handleOnClick}
-      >
-        New Palette
-      </button>
+      <div className="flex justify-center gap-x-6">
+        <button
+          className="bg-black text-white px-6 py-2 rounded-md text-xl mt-10"
+          onClick={handleOnClick}
+        >
+          New Palette
+        </button>
+        <button
+          className="bg-black text-white px-6 py-2 rounded-md text-xl mt-10"
+          onClick={() => addToSavedPalettes(hexCodes)}
+        >
+          Save Palette
+        </button>
+      </div>
     </>
   );
 };
