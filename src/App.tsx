@@ -34,7 +34,10 @@ function App() {
     },
   ]);
   const [savedColorPalettes, setSavedColorPalettes] = useState<
-    HexCodesType[][]
+    {
+      paletteId: number;
+      palette: HexCodesType[];
+    }[]
   >([]);
 
   const handleOnClick = () => {
@@ -58,7 +61,10 @@ function App() {
   };
 
   const addToSavedPalettes = (currentDisplayed: HexCodesType[]) => {
-    setSavedColorPalettes([...savedColorPalettes, currentDisplayed]);
+    setSavedColorPalettes([
+      ...savedColorPalettes,
+      { paletteId: Date.now(), palette: currentDisplayed },
+    ]);
   };
 
   return (
