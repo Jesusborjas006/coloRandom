@@ -3,6 +3,7 @@ import CardColors from "./components/CardColors";
 import SavedPalettes from "./components/SavedPalettes";
 import Title from "./components/Title";
 import { generateHexCode } from "./utils";
+import { HexCodesType } from "./utils/types";
 
 function App() {
   const [hexCodes, setHexCodes] = useState([
@@ -32,9 +33,9 @@ function App() {
       isLocked: false,
     },
   ]);
-  const [savedColorPalettes, setSavedColorPalettes] = useState([]);
-
-  console.log(hexCodes);
+  const [savedColorPalettes, setSavedColorPalettes] = useState<
+    HexCodesType[][]
+  >([]);
 
   const handleOnClick = () => {
     const newHexCode = hexCodes.map((card) => {
@@ -56,6 +57,10 @@ function App() {
     setHexCodes(updatedCards);
   };
 
+  const addToSavedPalettes = (currentDisplayed: HexCodesType[]) => {
+    setSavedColorPalettes([...savedColorPalettes, currentDisplayed]);
+  };
+
   return (
     <main className="text-center flex">
       <section className="w-[70%] border border-red-400">
@@ -64,6 +69,7 @@ function App() {
           hexCodes={hexCodes}
           handleOnClick={handleOnClick}
           handleToggle={handleToggle}
+          addToSavedPalettes={addToSavedPalettes}
         />
       </section>
       <SavedPalettes savedColorPalettes={savedColorPalettes} />

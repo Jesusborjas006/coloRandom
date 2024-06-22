@@ -6,12 +6,14 @@ interface CardColorsProps {
   hexCodes: HexCodesType[];
   handleOnClick: () => void;
   handleToggle: (cardId: number) => void;
+  addToSavedPalettes: (currentDisplayed: HexCodesType[]) => void;
 }
 
 export const CardColors = ({
   hexCodes,
   handleOnClick,
   handleToggle,
+  addToSavedPalettes,
 }: CardColorsProps) => {
   const cardElements = hexCodes.map((card) => (
     <div key={card.id}>
@@ -44,7 +46,10 @@ export const CardColors = ({
         >
           New Palette
         </button>
-        <button className="bg-black text-white px-6 py-2 rounded-md text-xl mt-10">
+        <button
+          className="bg-black text-white px-6 py-2 rounded-md text-xl mt-10"
+          onClick={() => addToSavedPalettes(hexCodes)}
+        >
           Save Palette
         </button>
       </div>
