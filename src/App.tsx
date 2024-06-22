@@ -67,6 +67,13 @@ function App() {
     ]);
   };
 
+  const removePallete = (id: number) => {
+    const filteredSaved = savedColorPalettes.filter((palette) => {
+      return palette.paletteId !== id;
+    });
+    setSavedColorPalettes(filteredSaved);
+  };
+
   return (
     <main className="text-center flex">
       <section className="w-[70%] border border-red-400">
@@ -78,7 +85,10 @@ function App() {
           addToSavedPalettes={addToSavedPalettes}
         />
       </section>
-      <SavedPalettes savedColorPalettes={savedColorPalettes} />
+      <SavedPalettes
+        savedColorPalettes={savedColorPalettes}
+        removePallete={removePallete}
+      />
     </main>
   );
 }

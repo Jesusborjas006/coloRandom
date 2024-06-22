@@ -5,9 +5,13 @@ interface SavedPalettesProps {
     paletteId: number;
     palette: HexCodesType[];
   }[];
+  removePallete: (id: number) => void;
 }
 
-const SavedPalettes = ({ savedColorPalettes }: SavedPalettesProps) => {
+const SavedPalettes = ({
+  savedColorPalettes,
+  removePallete,
+}: SavedPalettesProps) => {
   const savedPaletteElements = savedColorPalettes.map((palette) => (
     <div
       key={palette.paletteId}
@@ -20,7 +24,12 @@ const SavedPalettes = ({ savedColorPalettes }: SavedPalettesProps) => {
           style={{ backgroundColor: `#${color.color}` }}
         ></div>
       ))}
-      <button className="text-4xl font-bold ml-2 hover:text-red-600">X</button>
+      <button
+        className="text-4xl font-bold ml-2 hover:text-red-600"
+        onClick={() => removePallete(palette.paletteId)}
+      >
+        X
+      </button>
     </div>
   ));
 
