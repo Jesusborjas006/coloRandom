@@ -18,7 +18,7 @@ export const CardColors = ({
   const cardElements = hexCodes.map((card) => (
     <div key={card.id}>
       <div
-        className="h-[100px] w-[100px] sm:h-[150px] sm:w-[150px] border-4 border-black relative"
+        className="h-[100px] w-[100px] md:h-[150px] md:w-[150px] border-4 border-black relative"
         style={{ backgroundColor: `#${card.color}` }}
       >
         <img
@@ -35,7 +35,7 @@ export const CardColors = ({
 
   return (
     <>
-      <section className="flex flex-wrap justify-center gap-4 mt-16">
+      <section className="flex flex-wrap justify-center gap-4 mt-10">
         {cardElements}
       </section>
       <div className="flex justify-center gap-x-6">

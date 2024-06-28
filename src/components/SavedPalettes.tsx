@@ -41,8 +41,8 @@ const SavedPalettes = ({
   ));
 
   return (
-    <section className="w-[30%] border-l-4 border-black overflow-y-auto">
-      <h2 className="font-extrabold text-2xl mt-10">Saved Palettes</h2>
+    <section className="w-full md:w-[40%] lg:w-[30%] md:border-l-4 border-black overflow-y-auto h-screen">
+      <h2 className="font-extrabold text-2xl md:mt-10">Saved Palettes</h2>
       {!savedColorPalettes.length ? (
         <p className="mt-10">No saved palettes yet!</p>
       ) : (
