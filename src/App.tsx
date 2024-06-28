@@ -85,7 +85,7 @@ function App() {
   };
 
   return (
-    <main className="text-center flex">
+    <main className="text-center flex h-screen border border-blue-800 overflow-hidden">
       <section className="w-[70%] border border-red-400">
         <Title />
         <CardColors
