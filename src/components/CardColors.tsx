@@ -18,14 +18,13 @@ export const CardColors = ({
   const cardElements = hexCodes.map((card) => (
     <div key={card.id}>
       <div
-        className="h-[150px] w-[150px] border-4 border-black relative"
+        className="h-[100px] w-[100px] sm:h-[150px] sm:w-[150px] border-4 border-black relative"
         style={{ backgroundColor: `#${card.color}` }}
       >
         <img
-          className=" absolute bottom-2 right-2 cursor-pointer"
+          className=" absolute bottom-2 right-2 cursor-pointer w-[20px] sm:w-[30px]"
           src={card.isLocked ? lockIcon : unlockedIcon}
           alt="lock icon"
-          width={30}
           onClick={() => handleToggle(card.id)}
         />
       </div>
@@ -36,7 +35,7 @@ export const CardColors = ({
 
   return (
     <>
-      <section className="flex justify-center gap-x-4 mt-16">
+      <section className="flex flex-wrap justify-center gap-4 mt-16">
         {cardElements}
       </section>
       <div className="flex justify-center gap-x-6">
