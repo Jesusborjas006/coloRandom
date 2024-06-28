@@ -85,8 +85,8 @@ function App() {
   };
 
   return (
-    <main className="text-center flex">
-      <section className="w-[70%] border border-red-400">
+    <main className="text-center flex flex-col md:flex-row items-center md:items-start h-screen ">
+      <section className="md:w-[60%] lg:w-[70%] pb-6">
         <Title />
         <CardColors
           hexCodes={hexCodes}
